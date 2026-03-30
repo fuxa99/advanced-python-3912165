@@ -9,11 +9,26 @@ def findname(target):
         if name == target:
             print("Name found");
             return True
-    
-    print("Name not found")
-    return False
+    else:
+        #probehne pouze pokud for projde vse bez preruseni
+        print("Name not found")
+        return False
 
 print(findname("Creed"))
 print(findname("Tom"))
 
 # Check if a number is prime
+"""
+31 is a prime number
+66 is not a prime number
+"""
+def is_prime(num):
+    for i in range(2,num):
+        if num % i == 0:
+            print(num, "is not a prime number")
+            break # prerusi for a tim padem se neprovede else
+    else:
+        print(num, "is a prime number")
+
+is_prime(31)
+is_prime(66)

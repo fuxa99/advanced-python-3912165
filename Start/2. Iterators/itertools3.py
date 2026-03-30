@@ -10,20 +10,43 @@ vals = [10, 20, 30, 40, 50, 40, 30, 25, 55, 45, 40, 30]
 
 # dropwhile and takewhile will return values until
 # a certain condition is met that stops them
-
+def testFunction(x):
+    return x < 40
 
 # dropwhile() drops values until the predicate expression is True
-
+"""
+[40, 50, 40, 30, 25, 55, 45, 40, 30]
+"""
+print(list(itertools.dropwhile(testFunction, vals)))
 
 # takewhile() is the opposite of dropwhile() - it returns values from
 # the iterable while the predicate is True, then stops
-
+"""
+[10, 20, 30]
+"""
+print(list(itertools.takewhile(testFunction, vals)))
 
 # filterfalse() returns elements from the iterable for which the predicate
 # function returns False. 
-
+"""
+[25, 55, 45] vratili se jenom liche cisla jelikoz mame ze modulo je 0 
+"""
+result = list(itertools.filterfalse(lambda x:x % 2 == 0, vals))
+print(result)
 
 # These functions can work on complex objects
+"""
+[wcdata(game='Final',
+        attendance=88966,
+        team1='Argentina',
+        team2='France',
+        score='3 (4) -- 3 (2)'),
+ wcdata(game='Semifinal',
+        attendance=88966,
+        team1='Argentina',
+        team2='Croatia',
+        score='3 -- 0')]
+"""
 @dataclass
 class wcdata:
     game: str
@@ -38,3 +61,6 @@ worldcupdata = [
     wcdata("Semifinal", 68294, "France" , "Morocco" , "2 -- 0" ),
     wcdata("Semifinal", 88966, "Argentina" , "Croatia" , "3 -- 0" ),
 ]
+
+result = list(itertools.filterfalse(lambda x:x.attendance < 80000, worldcupdata))
+pprint.pp(result)
